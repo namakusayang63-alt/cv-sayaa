@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Siti Lutfika Al-Kharimah</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border: #334155;
+            --accent: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Action Buttons */
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* CV Card Layout */
+        .cv-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header / Hero Section */
+        .header {
+            background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%);
+            padding: 40px 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Avatar Container & Upload Button */
+        .avatar-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            border: 4px solid var(--accent);
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* Disembunyikan sampai ada foto yang diunggah */
+        }
+
+        .upload-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--accent);
+            color: #0f172a;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid var(--bg-card);
+            transition: all 0.2s ease;
+        }
+
+        .upload-badge:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hide file input */
+        #photo-input {
+            display: none;
+        }
+
+        .header-info h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .header-info .subtitle {
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+        }
+
+        /* Main Content Grid */
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Sections */
+        .profile-text {
+            color: var(--text-sub);
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .timeline-sub {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .timeline-desc {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 5px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background-color: rgba(79, 70, 229, 0.2);
+            color: #a5b4fc;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(79, 70, 229, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-list {
+                justify-content: center;
+            }
+            .section-title {
+                border-left: none;
+                border-bottom: 2px solid var(--primary);
+                padding-left: 0;
+                padding-bottom: 5px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            .top-actions, .upload-badge {
+                display: none !important;
+            }
+            .cv-card {
+                border: none;
+                box-shadow: none;
+                background-color: white;
+            }
+            .header {
+                background: none;
+                color: black;
+                border-bottom: 2px solid #ccc;
+            }
+            .header-info h1 { color: black; }
+            .header-info .subtitle { color: #333; }
+            .contact-list { color: #555; }
+            .section-title { color: black; border-left-color: #333; }
+            .profile-text, .timeline-desc { color: #333; }
+            .timeline-title { color: black; }
+            .skill-card { border: 1px solid #ccc; }
+            .skill-name { color: black; }
+            .progress-bar { background-color: #eee; }
+            .progress { background-color: #333; }
+            .badge { background-color: #eee; color: black; border-color: #ccc; }
+            .avatar { background-color: #eee; color: #333; border-color: #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Tombol Cetak PDF -->
+        <div class="top-actions">
+            <button class="btn" onclick="window.print()">
+                <i class="fas fa-print"></i> Cetak / Simpan PDF
+            </button>
+        </div>
+
+        <!-- Kartu Utama CV -->
+        <div class="cv-card">
+            
+            <!-- Header Profil -->
+            <div class="header">
+                <div class="avatar-wrapper">
+                    <div class="avatar">
+                        <i class="fas fa-user-graduate" id="default-icon"></i>
+                        <img id="profile-img" alt="Foto Profil">
+                    </div>
+                    <!-- Tombol Upload -->
+                    <label for="photo-input" class="upload-badge" title="Ganti Foto Profil">
+                        <i class="fas fa-camera"></i>
+                    </label>
+                    <input type="file" id="photo-input" accept="image/*" onchange="previewPhoto(event)">
+                </div>
+
+                <div class="header-info">
+                    <h1>Siti Lutfika Al-Kharimah</h1>
+                    <div class="subtitle">Siswi SMA Gunung Madu | Tugas CIT</div>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i> Bedeng Gumak
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-instagram"></i> @lutfi06_
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i> +62 812-3456-7890
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i> sitilutfika@email.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Isi Utama -->
+            <div class="content">
+                
+                <!-- Profil Singkat -->
+                <div>
+                    <div class="section-title">
+                        <i class="fas fa-user"></i> Profil Singkat
+                    </div>
+                    <p class="profile-text">
+                        Saya adalah siswi aktif di SMA Gunung Madu yang memiliki ketertarikan dalam bidang Teknologi Informasi dan Komunikasi (CIT). Saya pribadi yang disiplin, bersahabat, senang mempelajari hal-hal baru, serta mampu bekerja sama secara tim maupun mandiri.
+                    </p>
+                </div>
+
+                <!-- Pendidikan -->
+                <div>
+                    <div class="section-title">
+                        <i class="fas fa-graduation-cap"></i> Pendidikan
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">SMA Gunung Madu</div>
+                        <div class="timeline-sub">Pelajar (Aktif)</div>
+                        <div class="timeline-desc">Fokus pada pembelajaran akademik, teknologi informasi (CIT), serta aktif mengikuti kegiatan sekolah.</div>
+                    </div>
+                </div>
+
+                <!-- Keahlian -->
+                <div>
+                    <div class="section-title">
+                        <i class="fas fa-laptop-code"></i> Keahlian Teknis (Hard Skills)
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-name">
+                                <span>Microsoft Office (Word/PPT)</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-name">
+                                <span>Desain Grafis (Canva)</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-name">
+                                <span>Internet & Dasar Web (CIT)</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-name">
+                                <span>Pengolahan Data (Excel)</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div>
+                    <div class="section-title">
+                        <i class="fas fa-star"></i> Keahlian Interpersonal (Soft Skills)
+                    </div>
+                    <div class="badge-container">
+                        <span class="badge"><i class="fas fa-check-circle"></i> Kerjasama Tim</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Komunikasi</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Manajemen Waktu</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Kreativitas</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Kemampuan Beradaptasi</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Unggah Foto -->
+    <script>
+        function previewPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('profile-img');
+                    const icon = document.getElementById('default-icon');
+                    
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    icon.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
